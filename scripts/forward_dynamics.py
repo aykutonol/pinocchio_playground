@@ -2,9 +2,9 @@
 
 from __future__ import print_function
 import os
-import pinocchio as pin
-import numpy as np
 import csv
+import numpy as np
+import pinocchio as pin
 np.set_printoptions(linewidth=150, suppress=True, precision=4)
 
 # Get the directory path for this file

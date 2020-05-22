@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import os
-import pinocchio as pin
-import numpy as np
 import math
+import numpy as np
+import pinocchio as pin
 np.set_printoptions(linewidth=150)
 
 # Get the directory path for this file
