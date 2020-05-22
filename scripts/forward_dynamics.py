@@ -7,7 +7,6 @@ import numpy as np
 import csv
 np.set_printoptions(linewidth=150, suppress=True, precision=4)
 
-
 # Get the directory path for this file
 dirpath = os.path.dirname(os.path.abspath(__file__))
 
