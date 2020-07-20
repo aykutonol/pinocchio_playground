@@ -62,21 +62,22 @@ print("ddq_dq:\n", d.ddq_dq)
 print("ddq_dv:\n", d.ddq_dv)
 
 # dIntegrate
-J = pin.dIntegrate(m, q, v, pin.ArgumentPosition.ARG0)
-print("\nJ:\n", J)
+J = pin.dIntegrate(m, q, v)
+print("\nJq:\n", J[0])
+print("Jv:\n", J[1])
 
 # Joint velocity derivatives
 pin.computeForwardKinematicsDerivatives(m, d, q, v, a)
 dv = pin.getJointVelocityDerivatives(m, d, obj_jnt_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
 print("\ndv_dq:\n", dv[0])
-print("\ndv_dv:\n", dv[1])
+print("dv_dv:\n", dv[1])
 
 # Joint acceleration derivatives
 da = pin.getJointAccelerationDerivatives(m, d, obj_jnt_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
 print("\ndv_dq:\n", da[0])
-print("\nda_dq:\n", da[1])
-print("\nda_dv:\n", da[2])
-print("\nda_da:\n", da[3])
+print("da_dq:\n", da[1])
+print("da_dv:\n", da[2])
+print("da_da:\n", da[3])
 
 
 # Compute various dynamic quantities 
