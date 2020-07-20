@@ -19,18 +19,18 @@ q[0] = 1.
 q[1] = 2.
 q[2] = 0.
 q[3] = 0.
-q[4] = 0.
+q[4] = 0.259
 q[5] = 0.
-q[6] = 1.
+q[6] = 0.966
 print("pos =", q)
 # Set the velocities
 v = pin.utils.zero(m.nv)
-v[0] = 0.528398
-v[1] = -0.0905147
-v[2] = 0.325857
-v[3] = -0.509935
-v[4] = -0.361961
-v[5] = 0.827372
+# v[0] = 0.528398
+# v[1] = -0.0905147
+# v[2] = 0.325857
+# v[3] = -0.509935
+# v[4] = -0.361961
+# v[5] = 0.827372
 print("vel =", v)
 # Set the forces
 u = pin.utils.zero(m.nv)
@@ -54,6 +54,21 @@ print("Spatial acceleration:\n", acc_spatial)
 print("Classical acceleration:\n", acc_classic)
 print("Difference between spatial and classical accelerations:")
 print("v x w =", np.cross(vel_spatial.linear, vel_spatial.angular))
+
+# Evaluate the derivatives of ABA
+pin.computeABADerivatives(m, d, q, v, u)
+print("\nABA derivatives:")
+print("ddq_dq:\n", d.ddq_dq)
+print("ddq_dv:\n", d.ddq_dv)
+
+# dIntegrate
+J = pin.dIntegrate(m, q, v, pin.ArgumentPosition.ARG0)
+print("\nJ:\n", J)
+
+# Joint velocity derivatives
+dv = pin.getJointVelocityDerivatives(m, d, obj_jnt_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
+print("\ndv_dq:\n", dv[0])
+print("\ndv_dv:\n", dv[1])
 
 # Compute various dynamic quantities 
 # pin.computeCoriolisMatrix(m, d, q, v)
