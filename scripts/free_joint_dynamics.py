@@ -25,12 +25,12 @@ q[6] = 0.966
 print("pos =", q)
 # Set the velocities
 v = pin.utils.zero(m.nv)
-# v[0] = 0.528398
-# v[1] = -0.0905147
-# v[2] = 0.325857
-# v[3] = -0.509935
-# v[4] = -0.361961
-# v[5] = 0.827372
+v[0] = 0.528398
+v[1] = -0.0905147
+v[2] = 0.325857
+v[3] = -0.509935
+v[4] = -0.361961
+v[5] = 0.827372
 print("vel =", v)
 # Set the forces
 u = pin.utils.zero(m.nv)
@@ -66,9 +66,18 @@ J = pin.dIntegrate(m, q, v, pin.ArgumentPosition.ARG0)
 print("\nJ:\n", J)
 
 # Joint velocity derivatives
+pin.computeForwardKinematicsDerivatives(m, d, q, v, a)
 dv = pin.getJointVelocityDerivatives(m, d, obj_jnt_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
 print("\ndv_dq:\n", dv[0])
 print("\ndv_dv:\n", dv[1])
+
+# Joint acceleration derivatives
+da = pin.getJointAccelerationDerivatives(m, d, obj_jnt_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
+print("\ndv_dq:\n", da[0])
+print("\nda_dq:\n", da[1])
+print("\nda_dv:\n", da[2])
+print("\nda_da:\n", da[3])
+
 
 # Compute various dynamic quantities 
 # pin.computeCoriolisMatrix(m, d, q, v)
